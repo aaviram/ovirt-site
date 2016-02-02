@@ -53,7 +53,7 @@ Create the file `/etc/yum.repos.d/ovirt-snapshots.repo`, and replace `@distro@` 
 ##### Set Up the PatternFly Repository
 
 Create `/etc/yum.repos.d/patternfly.repo`, and copy and paste the contents of the corresponding file for your distribution from [PatternFly Repos on copr](https://copr.fedoraproject.org/coprs/patternfly/patternfly1).
-
+test
 ##### Install the Third-Party Packages
 
       # yum install git java-devel maven openssl postgresql-server \
