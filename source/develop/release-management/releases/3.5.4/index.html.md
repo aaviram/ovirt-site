@@ -1,5 +1,5 @@
 ---
-title: OVirt 3.5.4 Release Notes
+title: oVirt 3.5.4 Release Notes
 category: documentation
 authors: didi, msivak, mskrivan, sandrobonazzola, stirabos
 wiki_category: Documentation
@@ -8,13 +8,13 @@ wiki_revision_count: 29
 wiki_last_updated: 2015-09-17
 ---
 
-# OVirt 3.5.4 Release Notes
+# oVirt 3.5.4 Release Notes
 
 The oVirt Project is pleased to announce the availability of oVirt 3.5.4 release as of September 3rd, 2015.
 
 oVirt is an open source alternative to VMware vSphere, and provides an awesome KVM management interface for multi-node virtualization. This release is available now for Fedora 20, Red Hat Enterprise Linux 6.7, CentOS Linux 6.7, (or similar) and Red Hat Enterprise Linux 7.1, CentOS Linux 7.1 (or similar).
 
-To find out more about features which were added in previous oVirt releases, check out the [previous versions release notes](http://www.ovirt.org/Category:Releases). For a general overview of oVirt, read [ the Quick Start Guide](Quick_Start_Guide) and the [about oVirt](about oVirt) page.
+To find out more about features which were added in previous oVirt releases, check out the [previous versions release notes](/Category:Releases). For a general overview of oVirt, read [ the Quick Start Guide](Quick_Start_Guide) and the [about oVirt](about oVirt) page.
 
 ## Install / Upgrade from previous versions
 
@@ -163,4 +163,3 @@ Retrying (engine-cleanup, engine-setup again) it's enough to avoid it cause the 
 *   qemu-kvm-ev
 *   ovirt-engine-sdk-python
 
-<Category:Documentation> <Category:Releases>

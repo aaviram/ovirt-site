@@ -1,5 +1,5 @@
 ---
-title: OVirt DWH development environment
+title: oVirt DWH development environment
 category: documentation
 authors: sradco
 wiki_category: Documentation
@@ -10,11 +10,11 @@ wiki_last_updated: 2015-11-12
 
 <!-- TODO: Content review -->
 
-# OVirt DWH development environment
+# oVirt DWH development environment
 
 ## Prerequisites
 
-<b>Please notice:</b> We assume you have set up a development environment according to the steps available at [OVirt_Engine_Development_Environment](http://www.ovirt.org/OVirt_Engine_Development_Environment) or within source tree at [README.developer](http://gerrit.ovirt.org/gitweb?p=ovirt-engine.git;a=blob;f=README.developer;hb=HEAD) , before you start.
+<b>Please notice:</b> We assume you have set up a development environment according to the steps available at [OVirt_Engine_Development_Environment](/OVirt_Engine_Development_Environment) or within source tree at [README.developer](http://gerrit.ovirt.org/gitweb?p=ovirt-engine.git;a=blob;f=README.developer;hb=HEAD) , before you start.
 
 ### Database
 
@@ -52,7 +52,7 @@ The services will not exit as long as engine is up, to stop press <Ctrl>C.
 
 ## How to write DWH patches
 
-Please refer to [How_to_write_patches_for_dwh](http://www.ovirt.org/How_to_write_patches_for_dwh) for further information.
+Please refer to [How_to_write_patches_for_dwh](/How_to_write_patches_for_dwh) for further information.
 
 ## Packaging
 
@@ -64,6 +64,5 @@ Create source tarball by executing:
 
       $ make dist
 
-Follow the standard [oVirt guidelines for building RPM package](http://www.ovirt.org/Build_Binary_Package)
+Follow the standard [oVirt guidelines for building RPM package](/Build_Binary_Package)
 
-<Category:Documentation> <Category:DWH> <Category:Reports> [Category:Development environment](Category:Development environment)

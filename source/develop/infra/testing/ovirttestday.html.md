@@ -1,5 +1,5 @@
 ---
-title: OvirtTestDay
+title: oVirtTestDay
 authors: aglitke, alkaplan, alourie, amureini, anthony liguori, apuimedo, atal, danken,
   dcaroest, didi, dron, gianluca, hateya, jhenner, jlibosva, lhornyak, lvernia, mburns,
   mgoldboi, mkolesni, mkrcmari, moti, msalem, obasan, ofri, pradeep, pstehlik, rvaknin,
@@ -9,7 +9,7 @@ wiki_revision_count: 113
 wiki_last_updated: 2013-07-24
 ---
 
-# Ovirt Test Day
+# oVirt Test Day
 
 ## oVirt 3.3 test day
 
@@ -72,11 +72,11 @@ The overall test dates are spread across multiple duration which are driven by t
 
 ## Execution Plan and Guidelines
 
-for **installation** check: [Ovirt_Information_Details](http://www.ovirt.org/Testing/OvirtTestDay#Ovirt_Information_Details) deployment options:
+for **installation** check: [Ovirt_Information_Details](/Testing/OvirtTestDay#Ovirt_Information_Details) deployment options:
 
 *   f18 manager (vm) + f18 hypervisors
 *   f18 manager (vm) + el6 hypervisors
-*   f18 manager AIO (nested virt - [http://www.ovirt.org/Vdsm_Developers#Running_Node_as_guest_-_Nested_KVM Nested_KVM](http://www.ovirt.org/Vdsm_Developers#Running_Node_as_guest_-_Nested_KVM_Nested_KVM))
+*   f18 manager AIO (nested virt - [http://www.ovirt.org/Vdsm_Developers#Running_Node_as_guest_-_Nested_KVM Nested_KVM](/Vdsm_Developers#Running_Node_as_guest_-_Nested_KVM_Nested_KVM))
 *   ovirt-live - <http://wiki.ovirt.org/OVirt_Live>
 
 The following is the list of categories which we would like to focus on. this is basically regression testing:
@@ -244,7 +244,7 @@ oVirt Node image is not currently available for the Test Day. The image should b
 | Run VMs                                                  |      |
 | Go to resources tab and see that quota usage makes sance |      |
 
-## Ovirt Information Details
+## oVirt Information Details
 
 Beta RPMs for Fedora 18 are available from <http://resources.ovirt.org/releases/beta/rpm/Fedora/18>. In order to use it create a `/etc/yum.repos.d/ovirt-engine-beta.repo` file with the following content:
 
@@ -274,7 +274,7 @@ In case you would like to test a product with a new test case, there is a templa
 
 ## Bug Reporting
 
-*   ovirt - <https://bugzilla.redhat.com/enter_bug.cgi?product=oVirt>
+*   ovirt - <https://bugzilla.redhat.com/enter_bug.cgi?classification=oVirt>
 *   Spice - <https://bugs.freedesktop.org/> under Spice product
 *   VDSM - <https://bugzilla.redhat.com/show_bug.cgi?id=831998>
 

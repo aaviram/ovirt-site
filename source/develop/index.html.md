@@ -1,7 +1,7 @@
 ---
 title: Develop
 category: developer
-authors: dneary, jbrooks, ykaplan
+authors: dneary, jbrooks, ykaplan, sandrobonazzola
 wiki_category: Developer
 wiki_title: Develop
 wiki_revision_count: 8
@@ -45,12 +45,13 @@ _More information on [oVirt subprojects](Subprojects)_
 
 - [Install nightly snapshot](Install nightly snapshot)
 - [Building oVirt engine](Building oVirt engine)
+- [Testing ovirt-engine patches with Lago](/develop/infra/testing/lago/testing-engine-patches-with-lago/)
 - [Building oVirt Node](Node Building)
 - [Building VDSM](Vdsm Developers)
 - [Contributing to the Node project](Contributing to the Node project)
 - [Submitting a patch with Gerrit](Working with oVirt Gerrit)
 - [The development process](DevProcess)
-- [Release management](Release process)
+- [Release management](/develop/release-management/releases/)
 - [Getting in contact with the oVirt community](Communication)
 - [Becoming a maintainer](Becoming a maintainer)
 - [oVirt architecture](Architecture)
@@ -72,5 +73,24 @@ _More information on [oVirt subprojects](Subprojects)_
 
 [![oVirt architecture](Overall-arch.png)](images/wiki/Overall-arch.png)
 
+## oVirt teams
+
+ - [Integration](./projects/project-integration/)
+ - [Project Infrastructure](./infra/infrastructure)
+ - Data Warehouse
+ - Docs
+ - Gluster
+ - I18N
+ - Infra
+ - Marketing
+ - Network
+ - Node
+ - Release Engineering
+ - Reports
+ - SLA
+ - Storage
+ - Spice
+ - Virt
+ - UX
 </section>
 </section>

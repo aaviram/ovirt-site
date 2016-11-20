@@ -54,8 +54,5 @@ Affected oVirt projects:
 
 ### Documentation / External references
 
-### Comments and Discussion
 
-*   Refer to [Talk:Your feature name](Talk:Your feature name)
 
-<Category:Feature>

@@ -1,5 +1,5 @@
 ---
-title: OVirt 3.3.2 release notes
+title: oVirt 3.3.2 release notes
 category: documentation
 authors: dougsland, lvernia, sandrobonazzola, ybronhei
 wiki_category: Documentation
@@ -8,7 +8,7 @@ wiki_revision_count: 16
 wiki_last_updated: 2013-12-19
 ---
 
-# OVirt 3.3.2 release notes
+# oVirt 3.3.2 release notes
 
 The oVirt Project is pleased to announce the availability of oVirt 3.3.2 release
 
@@ -40,7 +40,7 @@ So, first step is disable 3.3 / stable repository and enable 3.2 in /etc/yum.rep
 
       [ovirt-32]
       name=Stable builds of the oVirt 3.2 project
-`baseurl=`[`http://ovirt.org/releases/3.2/rpm/EL/$releasever/`](http://ovirt.org/releases/3.2/rpm/EL/$releasever/)
+`baseurl=`[`http://ovirt.org/releases/3.2/rpm/EL/$releasever/`](/releases/3.2/rpm/EL/$releasever/)
       enabled=1
       skip_if_unavailable=1
       gpgcheck=0
@@ -276,4 +276,3 @@ No bugs reported at moment.
  - warning suggesting the user to use filters when collected logs are too big
  - rhevm-log-collector does not collect database dump
 
-<Category:Documentation> <Category:Releases>

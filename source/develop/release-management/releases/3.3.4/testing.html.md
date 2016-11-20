@@ -1,12 +1,12 @@
 ---
-title: Ovirt 3.3.4 testing
+title: oVirt 3.3.4 testing
 authors: sandrobonazzola
 wiki_title: Testing/Ovirt 3.3.4 testing
 wiki_revision_count: 3
 wiki_last_updated: 2014-02-28
 ---
 
-# Ovirt 3.3.4 testing
+# oVirt 3.3.4 testing
 
 ## What to do as a participant
 
@@ -24,5 +24,5 @@ If you're willing to participate, please add yourself to the table below:
 
 | Name                                               | part tested                       | Storage | Networking | Distribution | Bugs |
 |----------------------------------------------------|-----------------------------------|---------|------------|--------------|------|
-| [SandroBonazzola](User:SandroBonazzola) | engine-setup , clean install, AIO | NFS     | basic      | Fedora 19    | -    |
-| [SandroBonazzola](User:SandroBonazzola) | engine-iso-uploader               | NFS     | basic      | Fedora 19    | -    |
+| [Sandro Bonazzola](https://github.com/sandrobonazzola) | engine-setup , clean install, AIO | NFS     | basic      | Fedora 19    | -    |
+| [Sandro Bonazzola](https://github.com/sandrobonazzola) | engine-iso-uploader               | NFS     | basic      | Fedora 19    | -    |

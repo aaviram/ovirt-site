@@ -655,7 +655,7 @@ That will install lxml, because EPEL's python-lxml is not yet up to the version 
 
 ## TODO list
 
-[Bugzila](https://bugzilla.redhat.com/buglist.cgi?list_id=6860&classification=Community&query_format=advanced&bug_status=NEW&bug_status=ASSIGNED&component=ovirt-engine-cli&product=oVirt)
+[Bugzila](https://bugzilla.redhat.com/buglist.cgi?list_id=6860&classification=Community&query_format=advanced&bug_status=NEW&bug_status=ASSIGNED&component=ovirt-engine-cli&classificiation=oVirt)
 
 ## Change Log
 
@@ -665,4 +665,3 @@ That will install lxml, because EPEL's python-lxml is not yet up to the version 
 
 Michael Pasternak: mishka8520@yahoo.com, Juan Hernandez: juan.hernandez@redhat.com
 
-<Category:CLI> <Category:Feature>

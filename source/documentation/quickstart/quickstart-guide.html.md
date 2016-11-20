@@ -34,6 +34,7 @@ The following requirements are typical for small- to medium-sized installations.
     -   [oVirt 3.3](http://resources.ovirt.org/pub/yum-repo/ovirt-release33.rpm)
     -   [oVirt 3.4](http://resources.ovirt.org/pub/yum-repo/ovirt-release34.rpm).
     -   [oVirt 3.5](http://resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm).
+    -   [oVirt 3.6](http://resources.ovirt.org/pub/yum-repo/ovirt-release36.rpm).
 *   A client for connecting to oVirt Engine.
 
 #### For each Host (oVirt Node, Fedora Host, CentOS Host)
@@ -84,23 +85,21 @@ oVirt Engine is the control center of the oVirt environment. It allows you to de
 
          # yum -y update
 
-Reboot your server for the updates to be applied.
+3. Reboot your server for the updates to be applied.
 
-3. Subscribe the server to the oVirt project repository. For oVirt 3.5 install ovirt-release35.rpm. For oVirt 3.4 install ovirt-release34.rpm
+4. Subscribe the server to the oVirt project repository. For oVirt 3.6 install ovirt-release36.rpm. For oVirt 3.5 install ovirt-release35.rpm, and so on.
 
-`   # yum install `[`http://plain.resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm`](http://plain.resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm)
+  `   # yum install `[`http://resources.ovirt.org/pub/yum-repo/ovirt-release36.rpm`](http://plain.resources.ovirt.org/pub/yum-repo/ovirt-release36.rpm)
 
-4. You are now ready to install the oVirt Engine. Run the following command:
+5. You are now ready to install the oVirt Engine. Run the following command to download the oVirt Engine installation software and resolve all dependencies:
 
          # yum -y install ovirt-engine
 
-This command will download the oVirt Engine installation software and resolve all dependencies.
-
-5. When the packages have finished downloading, run the installer:
+6. When the packages have finished downloading, run the installer:
 
          # engine-setup
 
-6. The installer will take you through a series of interactive questions as listed in the following example. If you do not enter a value when prompted, the installer uses the default settings which are stated in [ ] brackets.
+7. The installer will take you through a series of interactive questions as listed in the following example. If you do not enter a value when prompted, the installer uses the default settings which are stated in [ ] brackets.
 
 Example 1: oVirt Engine installation
 
@@ -174,7 +173,7 @@ Important points to note:
 *   The storage type that you select will be used to create a data center and cluster. You will then be able to attach storage to these from the Web Administration Portal.
 *   The default ACL for the ISO_DOMAIN NFS export is allowing access to the current machine only. You need to provide read/write access to any host that will need to attach to this domain.
 
-7. You are then presented with a summary of the configurations you have selected. Type yes to accept them.
+8. You are then presented with a summary of the configurations you have selected. Type yes to accept them.
 
 Example 2: Confirm Engine installation settings
 
@@ -203,7 +202,7 @@ Example 2: Confirm Engine installation settings
                Configure Apache SSL                    : True
                Please confirm installation settings (OK, Cancel) [OK]:
 
-8. The installation commences. The following message displays, indicating that the installation was successful.
+9. The installation commences. The following message displays, indicating that the installation was successful.
 
 Example 3: Successful installation
 
@@ -259,7 +258,7 @@ Before installing the oVirt Node, you need to download the hypervisor image and 
 
 **Download oVirt Node installation CD**
 
-Download the latest version of ovirt Node from [oVirt Node release](http://resources.ovirt.org/releases/stable/iso/) and burn the ISO image onto a disc.
+Download the latest version of ovirt Node from [oVirt Node release](http://resources.ovirt.org/pub/ovirt-4.0/iso/ovirt-node-ng-installer/) and burn the ISO image onto a disc.
 
 Once you have created an oVirt Node installation CD, you can use it to boot the machine designated as your Node host. For this guide you will use the interactive installation where you are prompted to configure your settings in a graphical interface. Use the following keys to navigate around the installation screen:
 
@@ -306,7 +305,7 @@ b. Select the oVirt Engine tab. Configure the following options:
 
     * Connect to the oVirt Engine and Validate Certificate: Tick this checkbox if you wish to verify the oVirt Engine security certificate.
 
-    * Set oVirt Engine Admin Password: This field allows you to specify the root password for the hypervisor, and enable SSH password authentication from the oVirt Engine. This field is optional, and is covered in more detail in the [oVirt Installation Guide](http://www.ovirt.org/images/a/a9/OVirt-3.0-Installation_Guide-en-US.pdf).
+    * Set oVirt Engine Admin Password: This field allows you to specify the root password for the hypervisor, and enable SSH password authentication from the oVirt Engine. This field is optional, and is covered in more detail in the [oVirt Installation Guide](/images/a/a9/OVirt-3.0-Installation_Guide-en-US.pdf).
 
 <!-- -->
 
@@ -330,36 +329,37 @@ You now know how to install a oVirt Node. In addition to hypervisor hosts, you c
 
 2. Log in to your Fedora host as the **root** user.
 
-3. Install the *ovirt-release35* or "ovirt-release34" package using **yum**, this package configures your system to receive updates from the oVirt project's software repository:
+3. Install the *ovirt-release36* or "ovirt-release35" package using **yum**, this package configures your system to receive updates from the oVirt project's software repository:
 
-`   # yum localinstall `[`http://plain.resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm`](http://plain.resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm)
+  `   # yum localinstall `[`http://plain.resources.ovirt.org/pub/yum-repo/ovirt-release36.rpm`](http://plain.resources.ovirt.org/pub/yum-repo/ovirt-release36.rpm)
 
 4. The oVirt platform uses a number of network ports for management and other virtualization features. oVirt Engine can make the necessary firewall adjustments automatically while adding your host. Alternatively, you may adjust your Fedora host's firewall settings to allow access to the required ports by configuring iptables rules. Modify the /etc/sysconfig/iptables file so it resembles the following example:
 
-         :INPUT ACCEPT [0:0]
-         :FORWARD ACCEPT [0:0]
-         :OUTPUT ACCEPT [10765:598664]
-         -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT 
-         -A INPUT -p icmp -j ACCEPT 
-         -A INPUT -i lo -j ACCEPT
-         -A INPUT -p tcp --dport 22 -j ACCEPT
-         -A INPUT -p tcp --dport 16514 -j ACCEPT
-         -A INPUT -p tcp --dport 54321 -j ACCEPT
-         -A INPUT -p tcp -m multiport --dports 5634:6166 -j ACCEPT
-         -A INPUT -p tcp -m multiport --dports 49152:49216 -j ACCEPT  
-         -A INPUT -p tcp -m state --state NEW  
-         -A INPUT -j REJECT --reject-with icmp-host-prohibited 
-         -A FORWARD -m physdev ! --physdev-is-bridged -j REJECT --reject-with icmp-host-prohibited 
-         COMMIT
-
+   ```
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [10765:598664]
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT 
+-A INPUT -p icmp -j ACCEPT 
+-A INPUT -i lo -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp --dport 16514 -j ACCEPT
+-A INPUT -p tcp --dport 54321 -j ACCEPT
+-A INPUT -p tcp -m multiport --dports 5634:6166 -j ACCEPT
+-A INPUT -p tcp -m multiport --dports 49152:49216 -j ACCEPT  
+-A INPUT -p tcp -m state --state NEW  
+-A INPUT -j REJECT --reject-with icmp-host-prohibited 
+-A FORWARD -m physdev ! --physdev-is-bridged -j REJECT --reject-with icmp-host-prohibited 
+COMMIT
+   ```
 5. Ensure that the iptables service is configured to start on boot and has been restarted, or started for the first time if it was not already running. Run the following commands:
 
-         # chkconfig iptables on
-         # service iptables restart
+ `   # chkconfig iptables on`
+ `   # service iptables restart`
 
 6. Some versions of Fedora come without the **tar** command installed by default, specially if you make a minimal installation, but this command is required in order to configure the host from the engine, so install it if needed:
 
-       # yum install tar
+ `   # yum install tar`
 
 7. Check if NetworkManager is being used for the network interface that is going to be used between the engine and this host. If it is change it to No. NetworkManager interfers with the bridge setup later when deploying vdsm. This is atleast true for Fedora 19 but might work with Fedora >19.
 
@@ -1051,10 +1051,9 @@ You have now logged into the user portal. As you have PowerUserRole permissions,
 
 ![Figure 19. The Extended User Portal](power-user-portal.png "Figure 19. The Extended User Portal")
 
-You can also toggle to the Basic User Portal, which is the default (and only) display for users with UserRole permissions. This portal allows users to access and use virtual machines, and is ideal for everyday users who do not need to make configuration changes to the system. For more information, see the [oVirt User Portal Guide](oVirt User Portal Guide).
+You can also toggle to the Basic User Portal, which is the default (and only) display for users with UserRole permissions. This portal allows users to access and use virtual machines, and is ideal for everyday users who do not need to make configuration changes to the system. For more information, see the [oVirt User Portal Guide](/documentation/user-guide/user-guide/).
 
 ![Figure 20. The Basic User Portal](basic-user-portal.png "Figure 20. The Basic User Portal")
 
 You have now completed the Quick Start Guide, and successfully set up oVirt.
 
-<Category:Documentation>

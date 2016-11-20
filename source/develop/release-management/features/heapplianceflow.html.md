@@ -54,12 +54,12 @@ The whole process could take a few minutes (excluding initial download time).
 
 ### Dependencies / Related Features
 
-The appliance jobs need to provide the correct images; they could be download from here:
+The appliance jobs need to provide the correct images. Both OVA and RPM (the rpm is simply a wrapper for the OVA) could be download from: 
+  <http://jenkins.ovirt.org/job/ovirt-appliance_ovirt-3.6_build-artifacts-el7-x86_64/lastSuccessfulBuild/>
 
-*   OVA: <http://jenkins.ovirt.org/job/ovirt-appliance-engine_master_build-artifacts-el7_merged/lastSuccessfulBuild/>
-*   RPM: <http://jenkins.ovirt.org/job/ovirt-appliance-engine_master_create-rpms-el7-noarch_merged/lastSuccessfulBuild/> (the rpm is simply a wrapper for the OVA).
+The RPM is also available in the oVirt repo: the user could simply install them via yum and hosted-engine-setup should automatically detect them. __NOTE:__ The installation may take some time due to the size of the RPM.
 
-WIP: the RPMs should be added to the oVirt repo: the user could simply install them via yum and hosted-engine-setup should automatically detect them.
+`[root@hostedEngine] yum install ovirt-engine-appliance`
 
 ### Documentation / External references
 
@@ -67,6 +67,11 @@ WIP: the RPMs should be added to the oVirt repo: the user could simply install t
 
 ### Testing
 
+#### Prerequisites
+*   Make sure your host and your virtual machine support nested virtualization. You can find detailed instructions here:       
+    http://community.redhat.com/blog/2013/08/testing-ovirt-3-3-with-nested-kvm/.
+    After setting nested virtualization in the host, reboot it. 
+*   If you are opting for a DHCP network configuration (and not static) you must have a resolvable MAC address and DHCP name.   
 #### Manual setup on hosted-engine side
 
 Launch hosted-engine --deploy as usual
@@ -350,8 +355,8 @@ But if you choose to have hosted-engine launching engine-setup for you, you coul
                 |-           SSH fingerprint: BC:40:1F:C9:50:E1:9B:2A:08:FE:E6:5B:29:BB:E4:49
                 |-           Internal CA 6F:D2:D0:70:F6:FC:EF:19:06:29:23:8B:4E:48:23:8C:18:F5:89:6D
                 |-           Note! If you want to gather statistical information you can install Reports and/or DWH:
-`          |-               `[`http://www.ovirt.org/Ovirt_DWH`](http://www.ovirt.org/Ovirt_DWH)
-`          |-               `[`http://www.ovirt.org/Ovirt_Reports`](http://www.ovirt.org/Ovirt_Reports)
+`          |-               `[`http://www.ovirt.org/Ovirt_DWH`](/Ovirt_DWH)
+`          |-               `[`http://www.ovirt.org/Ovirt_Reports`](/Ovirt_Reports)
                 |-           Web access is enabled at:
 `          |-               `[`http://topolino.localdomain:80/ovirt-engine`](http://topolino.localdomain:80/ovirt-engine)
 `          |-               `[`https://topolino.localdomain:443/ovirt-engine`](https://topolino.localdomain:443/ovirt-engine)
@@ -469,8 +474,5 @@ None
       == oVirt Hosted-engine appliance flow ==
       An easy and quick way to deploy oVirt hosted-engine configuring an almost ready to use appliance.
 
-### Comments and Discussion
 
-*   Refer to <Talk:HEApplianceFlow>
 
-<Category:Feature>

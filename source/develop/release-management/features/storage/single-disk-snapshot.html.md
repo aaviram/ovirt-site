@@ -4,35 +4,38 @@ authors: amureini, derez, vered
 wiki_title: Features/Single Disk Snapshot
 wiki_revision_count: 14
 wiki_last_updated: 2014-05-25
+feature_name: Single Disk Snapshot
+feature_modules: engine
+feature_status: Released in oVirt 3.4
+category: feature
 ---
 
 # Single Disk Snapshot
 
-### Summary
+## Summary
 
 Customization of snapshots with regards to VM configuration and disks.
 
-### Owner
+## Owner
 
 *   Name: [ Daniel Erez](User:Derez)
 *   Email: <derez@redhat.com>
 
-### Current status
+## Current status
 
 *   Target Release: 3.4
-*   Status: work in progress
-*   Last updated: ,
+*   Status: released
 
-### Benefit to oVirt
+## Benefit to oVirt
 
 *   Allow creation of a customized snapshot. I.e. selecting which disks to take snapshot on.
 *   Custom snapshot preview:
     -   Previewing a new state by selecting VM configuration and disks from various snapshots.
     -   Support commit to the new state and undo to the previous one.
-*   Features based on specific disks snapshots, such as [Storage Live Migration](Features/Design/Storage Live Migration), will benefit from the new support
+*   Features based on specific disks snapshots, such as [Storage Live Migration](/develop/release-management/features/storage/storagelivemigration), will benefit from the new support
     -   E.g. LSM will take a snapshot only on the migrated disks - as opposed to the current situation in which a snapshot is taken on all disks.
 
-### Detailed Description
+## Detailed Description
 
 Currently, a Snapshot represents a single point in time that contains the configuration of the VM and all attached disks.
 
@@ -42,69 +45,81 @@ This feature introduces the ability to remove the constraint by allowing to excl
 
 In addition, adds a new functionality of creating a customized snapshot composed of configuration and disk from multiple snapshots.
 
-#### UI
+### UI
 
-##### Create Snapshot Dialog
+#### Create Snapshot Dialog
 
 ![](create_snapshot_dialog.png "create_snapshot_dialog.png")
 
-##### Custom Preview Button
+#### Custom Preview Button
 
 ![](custom_preview_button.png "custom_preview_button.png")
 
-##### Custom Preivew Dialog
+#### Custom Preivew Dialog
 
-###### Screenshot
+##### Screenshot
 
 ![](custom_preview_dialog.png "custom_preview_dialog.png")
 
-###### Video
+##### Video
 
 [Custom Preview Dialog - Video](media:custom_preview_dialog_video.gz)
 
-#### REST-API
+### REST-API
 
 Add <disks> tag to create/restore snapshot.
 
 Note: preview only is not available from rest (restore = preview + commit).
 
-##### Create Snapshot: POST /api/vms/{vm_id}/snapshots
+#### Create Snapshot:
 
-` `<snapshot>
-`   `<vm id="{vm_id}"/>
-`   `<disks>
-`     `<disk id="{disk_id}"/>
-`   `</disks>
-` `</snapshot>
+```xml
+POST /api/vms/{vm_id}/snapshots
 
-##### Restore Snapshot: POST /api/vms/{vm_id}/snapshots/{snapshot_id}/restore
+<snapshot>
+ <vm id="{vm_id}"/>
+ <disks>
+  <disk id="{disk_id}"/>
+ </disks>
+</snapshot>
+```
 
-` `<action>
-`   `<restore_memory>`true|false`</restore_memory>
-`   `<disks>
-`     `<disk id="{disk_id}">
-`       `<image_id>`{image_id}`</image_id>
-`       `<snapshot id="{snapshot_id}"/>
-`     `</disk>
-`   `</disks>
-` `</action>
+#### Restore Snapshot:
 
-##### oVirt 3.5
+```xml
+POST /api/vms/{vm_id}/snapshots/{snapshot_id}/restore
 
-##### Preview Snapshot: POST /api/vms/{vm_id}/preview_snapshot
+<action>
+ <restore_memory>"true|false"</restore_memory>
+ <disks>
+  <disk id="{disk_id}">
+   <image_id>"{image_id}"</image_id>
+   <snapshot id="{snapshot_id}"/>
+  </disk>
+ </disks>
+</action>
+```
 
-` `<action>
-`   `<snapshot id="{snapshot_id}"/>
-`   `<restore_memory>`true|false`</restore_memory>
-`   `<disks>
-`     `<disk id="{disk_id}">
-`       `<image_id>`{image_id}`</image_id>
-`       `<snapshot id="{snapshot_id}"/>
-`     `</disk>
-`   `</disks>
-` `</action>
+#### oVirt 3.5
 
-#### Backend
+#### Preview Snapshot:
+
+```xml
+POST /api/vms/{vm_id}/preview_snapshot
+
+<action>
+ <snapshot id="{snapshot_id}"/>
+ <restore_memory>`true|false`</restore_memory>
+ <disks>
+  <disk id="{disk_id}">
+   <image_id>`{image_id}`</image_id>
+   <snapshot id="{snapshot_id}"/>
+  </disk>
+ </disks>
+</action>
+```
+
+### Backend
 
 *   CreateAllSnapshotsFromVmCommand
     -   The command should support handling a specified disks list.
@@ -124,11 +139,11 @@ Note: preview only is not available from rest (restore = preview + commit).
 *   Snapshot
     -   Add a list of disk images.
 
-#### VDSM
+### VDSM
 
 Already supported.
 
-### Open Issues
+## Open Issues
 
 *   Custom Preview Dialog
     -   What to display at the bottom section?
@@ -143,20 +158,15 @@ Already supported.
         -   Excluding a disk implications are similar to deleting a disk (will result with an illegal disk on previous snapshots).
         -   Decision: allow disk exclude for now.
 
-### Testing
+## Testing
 
 *   Verify that create snapshot flow has no regressions.
 *   Verify that the 'regular' preview/undo/commit flow has no regressions.
 *   Create a snapshot with a subset of disks.
 *   Custom preview a snapshot from various point of times.
 *   Undo/commit a custom previewed snapshot.
-*   
 
-### Comments and Discussion
-
-*   
-
-### Future Work
+## Future Work
 
 *   Revise error flows
     -   E.g. failing to take a snapshot on one disk shouldn't rollback the entire snapshot, instead, just exclude the disk from the snapshot.

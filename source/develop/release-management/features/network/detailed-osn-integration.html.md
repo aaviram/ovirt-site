@@ -347,9 +347,7 @@ Please see the [feature page](Features/OSN_Integration).
 *   <http://docs.openstack.org/api/openstack-network/2.0/content/>
 *   <http://docs.openstack.org/trunk/openstack-network/admin/content/>
 
-## Comments and Discussion
 
-<Talk:Features/Detailed_OSN_Integration>
 
 ## Open Issues
 
@@ -392,4 +390,3 @@ Demo videos of the POC in action are available on youtube.
 
 <http://www.youtube.com/watch?v=uW3vrY2Y3xc>
 
-<Category:DetailedFeature> <Category:Networking>

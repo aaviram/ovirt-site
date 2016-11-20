@@ -24,11 +24,13 @@ wiki_last_updated: 2014-04-26
       src: "//www.youtube.com/embed/VIDID?showsearch=0&modestbranding=1"
     }
 
+    # Duplicate the videos with the starter object
     video1 = video.dup
-    video1[:src].sub!('VIDID', 'Aq3ctFhBIhk')
-
     video2 = video.dup
-    video2[:src].sub!('VIDID', 'C4gayV6dYK4')
+
+    # Customize each video object with the proper ID
+    video1[:src] = video[:src].sub('VIDID', 'Aq3ctFhBIhk')
+    video2[:src] = video[:src].sub('VIDID', 'C4gayV6dYK4')
 
   .col-md-5.col-md-offset-1
     %iframe{video1}
@@ -45,19 +47,22 @@ wiki_last_updated: 2014-04-26
       - [Quick Start Guide](Quick_Start_Guide)
       - [oVirt Administration Guide](OVirt_Administration_Guide)
       - [oVirt User Guide](OVirt_User_Guide)
-      - Release notes:
+      - [Release notes](/release/):
+          [oVirt 4.0.5](/release/4.0.5/),
+          [oVirt 4.0](/release/4.0.0/),
+          [oVirt 3.6](OVirt_3.6_Release_Notes),
           [oVirt 3.5](OVirt_3.5_Release_Notes),
           [oVirt 3.4](OVirt_3.4_Release_Notes),
           [oVirt 3.3](OVirt_3.3_release_notes),
           [oVirt 3.2](OVirt_3.2_release_notes),
-          [oVirt 3.1](OVirt_3.1_release_notes), and
+          [oVirt 3.1](OVirt_3.1_release_notes), 
           [oVirt 3.0](OVirt_3.0_release_notes)
       - [Troubleshooting](Troubleshooting) - When things go wrong
       - [About oVirt](About_oVirt)
 
     :markdown
       ### Contributed Documentation
-
+      - [Up and Running with oVirt 4.0](/blog/2016/08/up-and-running-with-ovirt-4-0-and-gluster-storage/) - by [Jason Brooks](User:Jbrooks)
       - [Up and Running with oVirt 3.5](http://community.redhat.com/blog/2014/10/up-and-running-with-ovirt-3-5/) - by [Jason Brooks](User:Jbrooks)
       - [Integrating Gluster storage into oVirt](http://middleswarth.net/content/installing-ovirt-31-and-glusterfs-using-either-nfs-or-posix-native-file-system-engine) - by [Robert Middleswarth](User:Rmiddle)
 
@@ -66,24 +71,25 @@ wiki_last_updated: 2014-04-26
       ### Developer documentation
 
       - [Install nightly snapshot](Install_nightly_snapshot)
-      - [Building oVirt engine](Building_oVirt_engine)
+      - [Building oVirt engine](/develop/developer-guide/engine/engine-setup/)
       - [Building oVirt Node](Node_Building)
       - [Building VDSM](Vdsm_Developers)
       - [Contributing to the Node project](Contributing_to_the_Node_project)
       - [Submitting a patch with Gerrit](Working_with_oVirt_Gerrit)
       - [The development process](DevProcess)
-      - [Release management](Release_process)
+      - [Release management](/develop/release-management/process/making-an-release/)
       - [Getting in contact with the oVirt community](Communication)
       - [Becoming a maintainer](Becoming_a_maintainer)
       - [oVirt architecture](Architecture)
-      - [Feature Roadmap oVirt 3.6](OVirt_3.6_Release_Management)
+      - [Feature Roadmap oVirt 4.0.z](/develop/release-management/releases/4.0.z/release-management/)
         (see also old roadmaps for
+        [oVirt 3.6](OVirt_3.6_Release_Management)
         [oVirt 3.5](OVirt_3.5_release-management),
         [oVirt 3.4](OVirt_3.4_release-management#Features),
         and [oVirt 3.3](OVirt_3.3_release-management#Features))
       - [Building a custom user portal](Sample_user_portals)
       - [Building oVirt engine DWH](OVirt_DWH_development_environment)
-      - [Building oVirt engine Reports](OVirt_Reports_development_environment)
+      - [Building oVirt engine Reports](/documentation/how-to/reports/reports/)
 
 
   .col-md-4
@@ -92,26 +98,38 @@ wiki_last_updated: 2014-04-26
 
       oVirt community processes and resources
 
-      - [Guidelines for community activity](Community_guidelines)
+      - [Guidelines for community activity](/community/about/community-guidelines/)
       - [Communicating via Mailing lists and IRC](Communication)
-      - [Editing this wiki](Help:Editing)
-      - [Organising pages in the wiki](Help:Wiki_structure)
-      - [Reporting a bug](https://bugzilla.redhat.com/enter_bug.cgi?product=ovirt)
+      - [Reporting a bug](/community/get-involved/report-a-bug/)
       - [Community activity](Community_activity)
       - [Outreach](Outreach)
       - [oVirt Global Workshops](OVirt_Global_Workshops)
 
 .row
-  .col-md-6
+  .col-md-4
 
     :markdown
       ## Getting involved
 
       Do you want to help us improve the documentation for oVirt?
 
-      -   [Sign up for a wiki account, and log in](Special:UserLogin)
-      -   Help fill some of the [gaps](Gap_analysis) we've identified
-      -   Help out with some [wiki gardening](Website_organisation)
+      -   Sign up for a [GitHub](https://github.com) account, and log in
+      -   Help fix some of the [issues](https://github.com/oVirt/ovirt-site/issues) we've identified
+      -   Help out with some [website gardening](https://github.com/oVirt/ovirt-site)
 
       Your time and effort is appreciated!
 
+  .col-md-4
+
+    :markdown
+      ## Categories
+
+      -   [Introduction](./introduction)
+      -   [Administration](./admin-guide)
+      -   [Architecture](./architecture)
+      -   [How To](./how-to)
+      -   [Internal](./internal)
+      -   [Security](./security)
+      -   [SLA](./sla)
+      -   [Storage](./storage)
+      -   [Drafts](./draft)

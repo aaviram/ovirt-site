@@ -1,5 +1,5 @@
 ---
-title: OVirt 3.5.5 Release Notes
+title: oVirt 3.5.5 Release Notes
 category: documentation
 authors: sandrobonazzola
 wiki_category: Documentation
@@ -8,13 +8,13 @@ wiki_revision_count: 17
 wiki_last_updated: 2015-10-27
 ---
 
-# OVirt 3.5.5 Release Notes
+# oVirt 3.5.5 Release Notes
 
 The oVirt Project is pleased to announce the availability of oVirt 3.5.5 release as of October 26th, 2015.
 
 oVirt is an open source alternative to VMware vSphere, and provides an awesome KVM management interface for multi-node virtualization. This release is available now for Red Hat Enterprise Linux 6.7, CentOS Linux 6.7 (or similar) and Red Hat Enterprise Linux 7.1, CentOS Linux 7.1 (or similar).
 
-To find out more about features which were added in previous oVirt releases, check out the [previous versions release notes](http://www.ovirt.org/Category:Releases). For a general overview of oVirt, read [ the Quick Start Guide](Quick_Start_Guide) and the [about oVirt](about oVirt) page.
+To find out more about features which were added in previous oVirt releases, check out the [previous versions release notes](/Category:Releases). For a general overview of oVirt, read [ the Quick Start Guide](Quick_Start_Guide) and the [about oVirt](about oVirt) page.
 
 ## Install / Upgrade from previous versions
 
@@ -135,4 +135,3 @@ A new oVirt Live ISO is available:
 *   qemu-kvm-rhev
 *   qemu-kvm-ev
 
-<Category:Documentation> <Category:Releases>

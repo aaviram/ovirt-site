@@ -1,12 +1,12 @@
 ---
-title: OVirt 3.0 to 3.1 upgrade
+title: oVirt 3.0 to 3.1 upgrade
 authors: fabiand, oschreib
 wiki_title: OVirt 3.0 to 3.1 upgrade
 wiki_revision_count: 4
 wiki_last_updated: 2012-08-02
 ---
 
-# OVirt 3.0 to 3.1 upgrade
+# oVirt 3.0 to 3.1 upgrade
 
 ## General Information
 
@@ -53,7 +53,7 @@ oVirt 3.0 was released as Fedora 16 package, and 3.1 is targeted to Fedora 17. D
 
 ## Updating oVirt Node
 
-*   Download the latest stable [oVirt Node release](http://ovirt.org/releases/3.1/tools/)
+*   Download the latest stable [oVirt Node release](/releases/3.1/tools/)
 *   Use one of the supported (PXE, USB, ...) medias to boot the to be updated machine running Node
 *   The update is non destructive, that means all your configurations will be kept
 

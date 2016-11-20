@@ -8,31 +8,32 @@ wiki_revision_count: 71
 wiki_last_updated: 2015-10-27
 feature_name: Cinder Integration
 feature_modules: engine/vdsm
-feature_status: Stabilization
+feature_status: Released in oVirt 3.6
 ---
 
 # Cinder Integration
 
-### Summary
+## Summary
 
 OpenStack Cinder(/ceph) Integration
 
-### Owner
+## Owner
 
 *   [Daniel Erez](User:DanielErez) (<derez@redhat.com>)
 *   [Maor Lipchuk](User:MaorLipchuk) (<mlipchuk@redhat.com>)
 *   [Nir Soffer](User:NirSoffer) (<nsoffer@redhat.com>)
 *   [Federico Simoncelli](User:FedericoSimoncelli) (<fsimonce@redhat.com>)
 
-### Detailed Description
+## Detailed Description
 
 Managing OpenStack Cinder volumes provisioned by ceph storage through oVirt engine. For initial phase, the integration should ensure support for creating/deleting volumes from a Cinder storage domain, while monitoring relevant statuses using [CoCo](CommandCoordinator) mechanism. The engine/vdsm should allow running VMs with attached ceph volumes via librbd library using libvirt support ([using libvirt with ceph rbd](http://ceph.com/docs/master/rbd/libvirt/)). As for security, when required, running VMs can authenticate using [CEPHX](http://ceph.com/docs/v0.69/rados/operations/auth-intro/) protocol (secret management will be handled in engine/vdsm).
+There is a known issue with OpenStack when deleting a snapshot which has dependent volumes based on it. to avoid this bug the OpenStack Cinder should configure the ceph backend with this attribute rbd_flatten_volume_from_snapshot as True.
 
-### Dependencies / Related Features
+## Dependencies / Related Features
 
 *   [https://github.com/woorea/openstack-java-sdk woorea](https://github.com/woorea/openstack-java-sdk woorea) openstack-java-sdk should be updated and expanded to include cinder-model/cinder-client modules (needed for having an interface to interact with cinder rest-api commands.
 
-### Documentation / External references
+## Documentation / External references
 
 *   Ceph documentation: <http://ceph.com/docs/master/>
 *   Ceph for Cinder: <http://techs.enovance.com/6572/brace-yourself-devstack-ceph-is-here>
@@ -42,7 +43,7 @@ Managing OpenStack Cinder volumes provisioned by ceph storage through oVirt engi
 *   Introducing Ceph to OpenStack: <http://www.sebastien-han.fr/blog/2012/06/10/introducing-ceph-to-openstack/>
 *   Configure OpenStack Ceph Client: <http://ceph.com/docs/master/rbd/rbd-openstack/#configure-openstack-ceph-clients>
 
-### Phases
+## Phases
 
 *   CRUD for OpenStack Volume (Cinder) provider.
 *   CRUD for adding/deleting Cinder disks (including monitoring).
@@ -56,7 +57,7 @@ Managing OpenStack Cinder volumes provisioned by ceph storage through oVirt engi
     -   Add template - clone volume/create volume from snapshot - use [clone volume](http://blueprints.launchpad.net/cinder/+spec/add-cloning-support-to-cinder) and [flat volume](https://blueprints.launchpad.net/cinder/+spec/add-flat-volume-api) (if available).
     -   Add VM from template - create volume from source volume (thin).
 
-### Future Work?
+## Future Work?
 
 *   Move VM disk/Copy Template disk (cinder-to-cinder?/cinder-to-vdsm?/vdsm-to-cinder?).
 *   Retype volume [volume-retype](https://blueprints.launchpad.net/cinder/+spec/volume-retype) (not supported for rbd yet).
@@ -72,7 +73,7 @@ Managing OpenStack Cinder volumes provisioned by ceph storage through oVirt engi
 *   Support multiple backends (lvm/etc).
 *   OVF disk / disaster recovery support
 
-### Relevant Flows
+## Relevant Flows
 
 *   Add/Remove/Edit OpenStack volume provider
 *   Add/Remove/Update/Extend Cinder Disk
@@ -95,190 +96,209 @@ Managing OpenStack Cinder volumes provisioned by ceph storage through oVirt engi
 *   Clone VM
 *   Remove Disk Snapshots
 
-### Open Issues
+## Open Issues
 
 *   Verify limits/quota against Cinder on Disk creation.
 *   VM removal - deleted disks remain in 'locked' status (as opposed to images which are deleted immediately). I.e. failure would caused to disks in status 'illegal'.
+*   There is a known issue with OpenStack when deleting a snapshot which has dependent volumes based on it. to avoid this bug the OpenStack Cinder should configure the ceph backend with this attribute rbd_flatten_volume_from_snapshot as True.
 
-### Patches
+## Patches
 
 [Topic Branch: Cinder](http://gerrit.ovirt.org/#/q/status:open+project:ovirt-engine+branch:master+topic:cinder,n,z)
 
-### Implementation
+## Implementation
 
-#### Flow Illustration
+### Flow Illustration
 
 ![](cinder_flow_illustration.png "cinder_flow_illustration.png")
 
-#### Engine
+### Engine
 
-#### REST-API
+### REST-API
 
-##### Add Provider: POST /api/openstackvolumeproviders
+#### Add Provider: `POST /api/openstackvolumeproviders`
 
+```xml
 <openstack_volume_provider>
-` `<name></name>
-` `<url><fqdn>`:8776`</url>
-` `<data_center>
-`   `<id|name></id|name>
-` `</data_center>
-` `<requires_authentication>`true|false`</requires_authentication>
-` `<username></username>
-` `<password></password>
-` `<tenant_name></tenant_name>
+    <name></name>
+    <url>[fqdn]:8776</url>
+    <data_center>
+        <name></name>
+    </data_center>
+    <requires_authentication>true|false</requires_authentication>
+    <username></username>
+    <password></password>
+    <tenant_name></tenant_name>
 </openstack_volume_provider>
+```
 
-##### Get Volume Provider: GET /api/openstackvolumeproviders/{provider_id} (All-Content: true)
+#### Get Volume Provider: `GET /api/openstackvolumeproviders/{provider_id} (All-Content: true)`
 
-` `<openstack_volume_providers>
-`  `<openstack_volume_provider href="/api/openstackvolumeproviders/{id}" id="{id}">
-`    `<name>`cinder2`</name>
-`    `<requires_authentication>`true`</requires_authentication>
-`    `<username>`cinder`</username>
-`    `<data_center href="/api/datacenters/{id}" id="{id}">
+```xml
+<openstack_volume_providers>
+    <openstack_volume_provider href="/api/openstackvolumeproviders/{id}" id="{id}">
+        <name>cinder2</name>
+        <requires_authentication>true</requires_authentication>
+        <username>cinder</username>
+        <data_center href="/api/datacenters/{id}" id="{id}">
             ...
-`    `</data_center>
-`  `</openstack_volume_provider>
+        </data_center>
+    </openstack_volume_provider>
 </openstack_volume_providers>
+```
 
-##### Get Volume Type: GET /api/openstackvolumeproviders/{provider_id}/volumetypes
+#### Get Volume Type: `GET /api/openstackvolumeproviders/{provider_id}/volumetypes`
 
+```xml
 <openstack_volume_types>
-` `<openstack_volume_type href="/api/openstackvolumeproviders/{id}/volumetypes/{volume_type_id}" id="{id}">
-`   `<name>`ceph`</name>
-`   `<properties>
-`     `<property>
-`       `<name>`volume_backend_name`</name>
-`       `<value>`ceph`</value>
-`    `</property>
-`  `</properties>
-`  `<openstack_volume_provider href="/api/openstackvolumeproviders/{provider_id}" id="{id}"/>
-` `</openstack_volume_type>
+    <openstack_volume_type href="/api/openstackvolumeproviders/{id}/volumetypes/{volume_type_id}" id="{id}">
+        <name>ceph</name>
+        <properties>
+            <property>
+            <name>volume_backend_name</name>
+            <value>ceph</value>
+            </property>
+        </properties>
+        <openstack_volume_provider href="/api/openstackvolumeproviders/{provider_id}" id="{id}"/>
+    </openstack_volume_type>
 </openstack_volume_types>
+```
 
-##### Get Authentication Keys: GET /api/openstackvolumeproviders/{provider_id}/authenticationkeys
+#### Get Authentication Keys: `GET /api/openstackvolumeproviders/{provider_id}/authenticationkeys`
 
+```xml
 <openstack_volume_authentication_keys>
-`  `<openstack_volume_authentication_key>
-`   `<description>`my ceph secret`</description>
-`   `<uuid>`c50352a3-0700-48e9-9189-ed359c09bcf8`</uuid>
-`   `<usage_type>`ceph`</usage_type>
-`   `<creation_date>`2015-05-31T15:28:25.525+03:00`</creation_date>
-` `</openstack_volume_authentication_key>
+    <openstack_volume_authentication_key>
+    <description>my ceph secret</description>
+    <uuid>c50352a3-0700-48e9-9189-ed359c09bcf8</uuid>
+    <usage_type>ceph</usage_type>
+    <creation_date>2015-05-31T15:28:25.525+03:00</creation_date>
+   </openstack_volume_authentication_key>
 </openstack_volume_authentication_keys>
+```
 
-##### Create an Authentication Key: POST /api/openstackvolumeproviders/{provider_id}/authenticationkeys
+#### Create an Authentication Key: `POST /api/openstackvolumeproviders/{provider_id}/authenticationkeys`
 
+```xml
 <openstack_volume_authentication_key>
-`  `<uuid>`0e6fff8d-8af9-49e2-b04f-1a5dbbe883a2`</uuid>
-`  `<description>`my ceph secret`</description>
-`  `<usage_type>`ceph`</usage_type>
-`  `<value>`YQo=`</value>
+    <uuid>0e6fff8d-8af9-49e2-b04f-1a5dbbe883a2</uuid>
+    <description>my ceph secret</description>
+    <usage_type>ceph</usage_type>
+    <value>YQo=</value>
 </openstack_volume_authentication_key>
+```
 
-##### Create a Cinder disk on a specific Volume Type: POST /api/vms/{vm_id}/disks
+#### Create a Cinder disk on a specific Volume Type: `POST /api/vms/{vm_id}/disks`
 
-<disk>`    `
-`   `<openstack_volume_type>
-`     `<name>`my_ceph`</name>
-`   `</openstack_volume_type>
-`   `<storage_domains>
-`     `<storage_domain>
-`       `<name>`cinder`</name>
-`     `</storage_domain>
-         `</storage_domains>`    
-`   `<provisioned_size>`1073741824`</provisioned_size>
-`   `<interface>`virtio`</interface>
-`   `<format>`raw`</format>
+```xml
+<disk>
+    <openstack_volume_type>
+        <name>my_ceph</name>
+    </openstack_volume_type>
+    <storage_domains>
+        <storage_domain>
+            <name>cinder</name>
+        </storage_domain>
+    </storage_domains> 
+    <provisioned_size>1073741824</provisioned_size>
+    <interface>virtio</interface>
+    <format>raw</format>
 </disk>
+```
 
-##### Get Unregistered Disks: GET /api/storagedomains/{storage_domain_id}/disks;unregistered
+#### Get Unregistered Disks: `GET /api/storagedomains/{storage_domain_id}/disks;unregistered`
 
+```xml
 <disks>
       ...
 </disks>
+```
 
-##### Register Disk: POST /api/storagedomains/{storage_domain_id}/disks;unregistered
+#### Register Disk: `POST /api/storagedomains/{storage_domain_id}/disks;unregistered`
 
+```xml
 <disk id="{disk_id}"></disk>
+```
 
-##### Delete Entity (DIsk/VM/Template)
+#### Delete Entity (DIsk/VM/Template)
 
 Cinder disks are deleted asynchronously, hence ';async' flag could be passed as part of the URL for getting 202-Accepted return status.
 
-      E.g. 
-      DELETE /api/disks/{disk_id};async
+E.g. 
+    `DELETE /api/disks/{disk_id};async`
+    
+```xml
 <action></action>
+```
 
-#### VDSM
+### VDSM
 
 *   Add [librbd1 package](https://apps.fedoraproject.org/packages/librbd1) as dependency to vdsm.spec file.
-*   Refactor 'Dirve -> getXML()' to support multiple hosts (represents Ceph monitors) in disk's source element:
+*   Refactor `Drive -> getXML()` to support multiple hosts (represents Ceph monitors) in disk's source element:
 
-<disk type='network' device='disk'>
-             
-
-`               `<host name='{monitor-host}' port='6789'/>
+```xml
+<disk type="network" device="disk">
+    <host name="{monitor-host}" port="6789"/>
                      ...
-             
 
-</source>
-`       `<target dev='vda' bus='virtio'/>
+    </source>
+    <target dev="vda" bus="virtio"/>
 </disk>
+```
 
 *   [TBD] [CEPHX](http://ceph.com/docs/v0.69/rados/operations/auth-intro/) secret handling - [Libvirt with CEPH (Configuring the VM section)](http://ceph.com/docs/master/rbd/libvirt/#configuring-the-vm).
 
-#### UI
+### UI
 
-##### OpenStack Volume Providers
+#### OpenStack Volume Providers
 
 ![](cinder_providers.png "cinder_providers.png")
 
-##### OpenStack Volume Provider Dialog
+#### OpenStack Volume Provider Dialog
 
 ![](cinder_new_provider.png "cinder_new_provider.png")
 
-##### Cinder Storage Domains
+#### Cinder Storage Domains
 
 ![](cinder_domains.png "cinder_domains.png")
 
-##### Cinder Disk Dialog
+#### Cinder Disk Dialog
 
 ![](cinder_new_disk.png "cinder_new_disk.png")
 
-##### Cinder Disks attached to a VM
+#### Cinder Disks attached to a VM
 
 ![](cinder_vms_disks.png "cinder_vms_disks.png")
 
-##### Cinder Disks List (under Storage)
+#### Cinder Disks List (under Storage)
 
 ![](cinder_storage_disks.png "cinder_storage_disks.png")
 
-##### Register Cinder Disks (under Storage)
+#### Register Cinder Disks (under Storage)
 
 ![](cinder_storage_register_disks.png "cinder_storage_register_disks.png")
 
-##### Cinder Disks List
+#### Cinder Disks List
 
 ![](cinder_disks_storage.png "cinder_disks_storage.png")
 
-##### Cinder Authentication Keys
+#### Cinder Authentication Keys
 
 ![](cinder_auth_keys.png "cinder_auth_keys.png")
 
-##### Authentication Key Dialog
+#### Authentication Key Dialog
 
 ![](cinder_new_auth_key.png "cinder_new_auth_key.png")
 
-### Authentication Keys
+## Authentication Keys
 
 When client Ceph authentication [(Cephx)](http://docs.ceph.com/docs/v0.69/rados/operations/auth-intro/#ceph-authentication-cephx) is enabled, authentication keys should be configured as follows:
 
-*   (1) Create a new secret key on ceph using 'ceph auth get-or-create' - see example in [Configuring client for Nova/Cinder](http://docs.ceph.com/docs/master/rbd/libvirt/#configuring-the-vm)
+*   (1) Create a new secret key on ceph using 'ceph auth get-or-create' - see example in ![Configuring client for Nova/Cinder](http://docs.ceph.com/docs/master/rbd/libvirt/#configuring-the-vm)
     -   E.g.1. ceph auth get-or-create client.cinder | ssh {your-nova-compute-server} sudo tee /etc/ceph/ceph.client.cinder.keyring
     -   E.g.2. ceph auth get-or-create client.vdsm | tee 'my_pass'
-*   (2) Navigate to 'Authentication Keys' sub-tab (under 'Providers' main-tab): [Screenshot](http://www.ovirt.org/index.php?title=Features/Cinder_Integration#Cinder_Authentication_Keys)
-*   (3) Click 'New' to open the create dialog: [Screenshot](http://www.ovirt.org/index.php?title=Features/Cinder_Integration#Authentication_Key_Dialog)
+*   (2) Navigate to 'Authentication Keys' sub-tab (under 'Providers' main-tab): ![Authentication Keys](Cinder_Authentication_Keys.png)
+*   (3) Click 'New' to open the create dialog: ![Screenshot](Authentication_Key_Dialog.png)
 *   (4) In 'Value' text-box, enter the value of the secret key created on step (1).
     -   Can be retrieved by 'ceph auth get client.cinder'
 *   (5) From 'UUID' text-box, copy the automatically generated UUID (or create a new one), and add to cinder.conf.
@@ -289,4 +309,3 @@ When client Ceph authentication [(Cephx)](http://docs.ceph.com/docs/v0.69/rados/
 
 Note: client authentication keys are only used upon running a VM; i.e. authentication for ceph volume manipulation should be configured solely on Cinder side.
 
-[Cinder_Integration](Category:Feature) [Cinder_Integration](Category:oVirt 4.0 Proposed Feature)

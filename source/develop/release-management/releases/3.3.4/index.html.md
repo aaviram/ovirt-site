@@ -1,5 +1,5 @@
 ---
-title: OVirt 3.3.4 release notes
+title: oVirt 3.3.4 release notes
 category: documentation
 authors: dougsland, sandrobonazzola
 wiki_category: Documentation
@@ -8,7 +8,7 @@ wiki_revision_count: 11
 wiki_last_updated: 2014-03-04
 ---
 
-# OVirt 3.3.4 release notes
+# oVirt 3.3.4 release notes
 
 The oVirt Project is pleased to announce the availability of oVirt 3.3.4 release
 
@@ -35,7 +35,7 @@ So, first step is disable 3.3 / stable repository and enable 3.2 in /etc/yum.rep
 
       [ovirt-32]
       name=Stable builds of the oVirt 3.2 project
-`baseurl=`[`http://ovirt.org/releases/3.2/rpm/EL/$releasever/`](http://ovirt.org/releases/3.2/rpm/EL/$releasever/)
+`baseurl=`[`http://ovirt.org/releases/3.2/rpm/EL/$releasever/`](/releases/3.2/rpm/EL/$releasever/)
       enabled=1
       skip_if_unavailable=1
       gpgcheck=0
@@ -125,4 +125,3 @@ sos: plugin should ignore /var/run/vdsm/storage
  - Do not collect .pgpass files from RHEV-M.
  - Collect ovirt-engine runtime configuration files
 
-<Category:Documentation> <Category:Releases>

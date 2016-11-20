@@ -13,49 +13,38 @@ wiki_last_updated: 2015-08-26
 
 # Vdsm Developers
 
-## Installing the required packages
+## Installing the required repositories
 
-In order to build VDSM you should enable oVirt repositories by installing an ovirt-release rpm:
+To build VDSM, enable the oVirt repositories by installing the ovirt-release rpm:
 
       yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release-master.rpm
+      
+      
+ or if you are using Fedora 
+ 
+ 
+      dnf install http://resources.ovirt.org/pub/yum-repo/ovirt-release-master.rpm
+       
+If you need a previous installation, use the corresponding repository instead:
 
-If you need a previous installation use the corresponding repo instead:
+      yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release40.rpm 
+      yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release36.rpm 
+      yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm
+      
+ for Fedora 
+    
+     dnf install http://resources.ovirt.org/pub/yum-repo/ovirt-release40.rpm 
+     dnf install http://resources.ovirt.org/pub/yum-repo/ovirt-release36.rpm 
+     dnf install http://resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm
 
-      yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm 
-      yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release34.rpm 
-      yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release33.rpm
-
-This will add all the required repositories for you, including:
+This adds all the required repositories for you, including:
 
 *   EPEL repositories for Red Hat Enterprise Linux, CentOS or similar distributions
 *   GlusterFS repositories
 *   Fedora Virtualization Preview repositories for Fedora or similar distributions
 *   All required GPG keys.
 
-Red Hat Enterprise Linux 6 users must install a newer pep8 version than the one shipped in EPEL6. Older pep8 versions have a bug that's tickled by VDSM. You can use \`pip\`, or
-
-      yum install http://danken.fedorapeople.org/python-pep8-1.4.5-2.el6.noarch.rpm
-
-el6's pyflakes is a bit old, too, so consider taking
-
-      yum install http://danken.fedorapeople.org/pyflakes-0.8.1-3.el6.noarch.rpm
-
-Install the following packages before attempting to build:
-
-       yum install make autoconf automake pyflakes logrotate python-pep8 libvirt-python python-devel \
-       python-nose rpm-build sanlock-python genisoimage python-odict python-pthreading libselinux-python\
-       python-ethtool m2crypto python-dmidecode python-netaddr python-inotify python-argparse git \
-       python-cpopen bridge-utils libguestfs-tools-c pyparted openssl libnl3 libtool gettext-devel python-ioprocess \
-       policycoreutils-python python-simplejson python-blivet python-six mom ovirt-vmconsole
-
-On EL7.1, pep8 is not available, and the version in pypi is too new, failing the build. So install pip, and then pep8 1.5.6:
-
-       easy_install pip
-       pip install pep8==1.5.6
-
-On EL7.1, pyflakes is not available currently. Until we understand why, please install it using easy_install:
-
-      easy_install pyflakes
+VDSM requires Python 2 as your /usr/bin/python.
 
 ## Getting the source
 
@@ -63,9 +52,17 @@ Our public git repository is located at: [oVirt.org](http://gerrit.ovirt.org/git
 
 You can clone this repository by running the following command:
 
-`git clone `[`http://gerrit.ovirt.org/p/vdsm.git`](http://gerrit.ovirt.org/p/vdsm.git)
+      git clone http://gerrit.ovirt.org/p/vdsm.git
 
-## Building a VDSM RPM
+## Installing the required packages
+
+      yum install `cat automation/check-patch.packages.el7`
+
+or if you are using Fedora
+
+      dnf install `cat automation/check-patch.packages.f*`
+
+## Configuring the source
 
 VDSM uses autoconf and automake as its build system.
 
@@ -73,21 +70,62 @@ To configure the build environment:
 
       ./autogen.sh --system
 
+To see available options:
+
+     ./configure --help
+
+## Testing
+
+Running the tests except slow and stress tests:
+
+      make check
+
+Running all tests, including slow and stress tests:
+
+      make check-all
+
+This is very slow and consumes lot of resources; running hundreds of
+threads and child processes.
+
+To exclude a specific test (test_foo):
+
+      make check NOSE_EXCLUDE=test_foo
+
+Running code style and quality checks:
+
+     make flake8
+
+Running code style and quality checks for specific files:
+
+    .tox/flake8/bin/flake8 /path/to/module.py
+
+The command above works only after running make flake8 in the first
+time. You may want to install flake8 on your system for convenience.
+
+### Testing specific modules
+
+Running all the tests is too slow during development. It is recommended
+to run the relevant module tests while making changes, and run the
+entire test suite before submitting a patch.
+
+To run specific tests:
+
+    cd tests
+    ./run_tests_local.sh foo_test.py bar_test.py
+
+To enable slow and stress tests:
+
+    ./run_tests_local.sh --enable-slow-tests --enable-stress-tests foo_test.py bar_test.py
+
+To run using different python executable:
+
+    PYTHON_EXE=python3 ./run_tests_local.sh foo_test.py bar_test.py
+
+## Building a VDSM RPM
+
 To create an RPM:
 
       make rpm
-
-or
-
-      make NOSE_EXCLUDE=.* rpm  #(As development only, avoid the unittests validation)
-
-To exclude a specific test (testStressTest):
-
-      make NOSE_EXCLUDE=testStressTest rpm
-
-To ignore unittests and avoid pep8:
-
-      make PEP8=true NOSE_EXCLUDE=.* rpm
 
 VDSM automatically builds using the latest tagged version. If you want to explicitly define a version, use:
 
@@ -95,7 +133,7 @@ VDSM automatically builds using the latest tagged version. If you want to explic
 
 ## Building with hooks support
 
-      ./autogen.sh --system && ./configure  --enable-hooks && make rpm
+      ./autogen.sh --system  --enable-hooks && make rpm
 
 ## Basic installation
 
@@ -423,7 +461,7 @@ Copy the 19 patches to the ~/vdsm-fedora dir
 Example:
 
 `  `<snip>
-`  Url:            `[`http://www.ovirt.org/wiki/Vdsm`](http://www.ovirt.org/wiki/Vdsm)
+`  Url:            `[`http://www.ovirt.org/wiki/Vdsm`](/wiki/Vdsm)
         # The source for this package was pulled from upstream's vcs.
         # Use the following commands to generate the tarball:
 `  #  git clone `[`http://gerrit.ovirt.org/p/vdsm`](http://gerrit.ovirt.org/p/vdsm)
@@ -497,7 +535,7 @@ Which fedpkg build will generate a koji url that will provide the RPMs and can b
 
 VDSM for ovirt-3.6 depends on ovirt-vmconsole package. To fetch the sources of ovirt-vmconsole, run
 
-`git clone `[`http://gerrit.ovirt.org/p/ovirt-vmconsole.git`](http://gerrit.ovirt.org/p/ovirt-vmconsole.git)
+      git clone http://gerrit.ovirt.org/p/ovirt-vmconsole.git
 
 ## Troubleshooting
 
@@ -519,4 +557,3 @@ We have a partial code walk through of the [virt subsystem](VDSM_VM_startup) (vi
 
 To analyse the performance and the scalability of the VDSM, you first need to [set up the tools](Profiling_Vdsm). Then you may want to [run common scenarios](VDSM_benchmarks), or write your own using a [template](VDSM_benchmarks), to make sure the results are easily shareable.
 
-<Category:Vdsm> <Category:Documentation> [Category:Development environment](Category:Development environment)

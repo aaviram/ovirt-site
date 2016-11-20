@@ -26,7 +26,7 @@ Integrating Foreman with oVirt will help adding hypervisor hosts that are manage
 ### Current Status
 
 *   Supported in oVirt>=3.5 over RHEL>=6.6
-*   Tested with Satellite Version 6.0.4 (Setup details described in [1](http://www.ovirt.org/index.php?title=Features/ForemanIntegration&action=submit#Make_Foreman_Appliance))
+*   Tested with Satellite Version 6.0.4 (Setup details described in [1](/index.php?title=Features/ForemanIntegration&action=submit#Make_Foreman_Appliance))
 
 ### Detailed Description
 
@@ -92,7 +92,7 @@ Prerequisites:
 *   Correlate the defined Host group with relevant templates (PXE / kickstart files) associated to the relevant OSs
 *   oVirt needs proper permissions to view relevant bare-metal hosts, host groups, compute resources and execute provision request [TODO define roles automatically]
 *   Set Foreman's compute resource that correlates to the required permissions (Availability to approve and add host by oVirt provision plugin.
-*   Define puppet class for installing oVirt-Engine public key to allow deploy oVirt on provisioned host (locate them under /usr/share/puppet/modules) - example in [2](http://www.ovirt.org/index.php?title=Features/ForemanIntegration&action=submit#Make_Foreman_Appliance).
+*   Define puppet class for installing oVirt-Engine public key to allow deploy oVirt on provisioned host (locate them under /usr/share/puppet/modules) - example in [2](/index.php?title=Features/ForemanIntegration&action=submit#Make_Foreman_Appliance).
 
 Steps To Use:
 
@@ -318,4 +318,3 @@ To allow testing the feature in "allinone" configuration, which means running fo
 1.  Foreman homepage: <http://theforeman.org/>
 2.  Presentation for CloudOpen NA, 2014 - Integrating oVirt and Foreman to Empower your Data-Center: <https://www.youtube.com/watch?v=gozX891kYAY>
 
-<Category:Feature> <Category:Template> [Category:oVirt 3.6 Proposed Feature](Category:oVirt 3.6 Proposed Feature) [Category:oVirt 3.6 Feature](Category:oVirt 3.6 Feature)

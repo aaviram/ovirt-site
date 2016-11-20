@@ -1,12 +1,12 @@
 ---
-title: OvirtTestDay3.0
+title: oVirtTestDay3.0
 authors: mgoldboi
 wiki_title: Testing/OvirtTestDay3.0
 wiki_revision_count: 2
 wiki_last_updated: 2013-01-28
 ---
 
-# Ovirt Test Day 3.0
+# oVirt Test Day 3.0
 
 ## Objective
 
@@ -154,7 +154,7 @@ For details about configuration check <http://www.ovirt.org/wiki/Testing/Spice>
 
 ### Node
 
-Pre-built node available [here](http://ovirt.org/releases/nightly/binary/ovirt-node-image-2.2.1-3.6.fc16.iso).
+Pre-built node available [here](/releases/nightly/binary/ovirt-node-image-2.2.1-3.6.fc16.iso).
 
 Please check [Node_Release_Notes](Node_Release_Notes) prior to testing for information on current known issues
 
@@ -176,7 +176,7 @@ Apply workaround in [782660](https://bugzilla.redhat.com/show_bug.cgi?id=782660)
 | Once registered, run vms on top of ovirt-node                                                                                                                                                                                                                                                                   |                                                                        |
 |                                                                                                                                                                                                                                                                                                                 |                                                                        |
 
-## Ovirt Information Details
+## oVirt Information Details
 
 Please refer the following document for hardware requirements, installation procedure, software download location
 
@@ -202,7 +202,7 @@ In case you would like to test a product with a new test case, there is a templa
 
 ## Bug Reporting
 
-*   ovirt - <https://bugzilla.redhat.com/enter_bug.cgi?product=oVirt>
+*   ovirt - <https://bugzilla.redhat.com/enter_bug.cgi?classification=oVirt>
 *   Spice - <https://bugs.freedesktop.org/> under Spice product
 
 ## Miscellaneous

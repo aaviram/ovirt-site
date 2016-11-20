@@ -49,11 +49,6 @@ It'll be easier to install the ovirt-guest-agent on OpenSUSE guests.
 
 ### Repository
 
-#### openSUSE 12.3
-
-*   URL: <http://download.opensuse.org/repositories/home:/evilissimo/openSUSE_12.3>
-*   Repo File: <http://download.opensuse.org/repositories/home:/evilissimo/openSUSE_12.3/home:evilissimo.repo>
-
 #### openSUSE 13.1
 
 *   URL: <http://download.opensuse.org/repositories/home:/evilissimo/openSUSE_13.1>
@@ -87,7 +82,9 @@ It'll be easier to install the ovirt-guest-agent on OpenSUSE guests.
 `# zypper addrepo `<URL to repo file from the Repository section>
       # zypper refresh
       # zypper install ovirt-guest-agent-common
-      # service ovirt-guest-agent start 
+      # service ovirt-guest-agent start
+      OR with systemd
+      # systemctl start ovirt-guest-agent.service
 
 ### Testing
 
@@ -115,8 +112,5 @@ It'll be easier to install the ovirt-guest-agent on OpenSUSE guests.
 
 **Note:** The VM UUID can be found on the Admin Portal in the General tab for the VM **Note:** The FQDN value is only only shown if the FQDN is not empty, not localhost and not localhost.localdomain
 
-### Comments and Discussion
 
-*   Refer to <Talk:Feature/GuestAgentOpenSUSE>
 
-<Category:Feature> <Category:Ovirt_guest_agent>

@@ -204,6 +204,4 @@ Take all hosts in clusters up.
 
 <!-- -->
 
-*   Refer to [Talk:NUMA aware KSM support](Talk:NUMA aware KSM support)
 
-<Category:Feature> <Category:Template>

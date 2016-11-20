@@ -1,5 +1,5 @@
 ---
-title: OVirt 3.5.1 Release Notes
+title: oVirt 3.5.1 Release Notes
 category: documentation
 authors: alonbl, bproffitt, didi, sandrobonazzola, stirabos
 wiki_category: Documentation
@@ -8,13 +8,13 @@ wiki_revision_count: 32
 wiki_last_updated: 2015-02-02
 ---
 
-# OVirt 3.5.1 Release Notes
+# oVirt 3.5.1 Release Notes
 
 The oVirt Project is pleased to announce the availability of oVirt 3.5.1 release as of January 21, 2015.
 
 oVirt is an open source alternative to VMware vSphere, and provides an awesome KVM management interface for multi-node virtualization. This release is available now for Fedora 20, Red Hat Enterprise Linux 6.6, CentOS 6.6, (or similar) and Red Hat Enterprise Linux 7, CentOS 7 (or similar).
 
-To find out more about features which were added in previous oVirt releases, check out the [previous versions release notes](http://www.ovirt.org/Category:Releases). For a general overview of oVirt, read [ the Quick Start Guide](Quick_Start_Guide) and the [about oVirt](about oVirt) page.
+To find out more about features which were added in previous oVirt releases, check out the [previous versions release notes](/Category:Releases). For a general overview of oVirt, read [ the Quick Start Guide](Quick_Start_Guide) and the [about oVirt](about oVirt) page.
 
 ## Install / Upgrade from previous versions
 
@@ -498,4 +498,3 @@ Retrying (engine-cleanup, engine-setup again) it's enough to avoid it cause the 
  - postgres data is not collected
  - remove password leak from ovirt-engine setup answer file
 
-<Category:Documentation> <Category:Releases>

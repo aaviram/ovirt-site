@@ -1,5 +1,5 @@
 ---
-title: OvirtTestDay3.1
+title: oVirtTestDay3.1
 authors: aglitke, gcheresh, jhernand, mburns, mkolesni, rmiddle, rvaknin, snmishra,
   ykaul
 wiki_title: Testing/OvirtTestDay3.1
@@ -7,7 +7,7 @@ wiki_revision_count: 33
 wiki_last_updated: 2012-06-15
 ---
 
-# Ovirt Test Day 3.1
+# oVirt Test Day 3.1
 
 ## Objective
 
@@ -141,7 +141,7 @@ Webadmin: BZ#832046, BZ#832064, BZ#832128
 
 ### Node
 
-Pre-built node available [here](http://ovirt.org/releases/beta/binary/ovirt-node-iso-2.4.0-1.1.fc17.iso).
+Pre-built node available [here](/releases/beta/binary/ovirt-node-iso-2.4.0-1.1.fc17.iso).
 
 Please check [Node_Release_Notes](Node_Release_Notes) prior to testing for information on current known issues
 
@@ -161,7 +161,7 @@ Please check [Node_Release_Notes](Node_Release_Notes) prior to testing for infor
 | Once registered, run vms on top of ovirt-node                                                                                                                                                                                                                                                                   |      |
 |                                                                                                                                                                                                                                                                                                                 |      |
 
-## Ovirt Information Details
+## oVirt Information Details
 
 Beta RPMs for Fedora 17 are available from <http://www.ovirt.org/releases/beta/fedora/17/>. In order to use it create a `/etc/yum.repos.d/ovirt-engine-beta.repo` file with the following content:
 
@@ -200,7 +200,7 @@ In case you would like to test a product with a new test case, there is a templa
 
 ## Bug Reporting
 
-*   ovirt - <https://bugzilla.redhat.com/enter_bug.cgi?product=oVirt>
+*   ovirt - <https://bugzilla.redhat.com/enter_bug.cgi?classification=oVirt>
 *   Spice - <https://bugs.freedesktop.org/> under Spice product
 *   VDSM - <https://bugzilla.redhat.com/show_bug.cgi?id=831998>
 

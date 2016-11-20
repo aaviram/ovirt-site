@@ -36,8 +36,8 @@ The portals build on the user-level API.
 
 The different versions of the portal use language bindings for the appropriate language:
 
-*   [oVirt Java SDK](http://www.ovirt.org/Java-sdk)
-*   [oVirt Python SDK](http://www.ovirt.org/Python-sdk)
+*   [oVirt Java SDK](/Java-sdk)
+*   [oVirt Python SDK](/Python-sdk)
 *   Ruby currently does not have a separate oVirt SDK, we use [rbovirt](https://github.com/abenari/rbovirt), which contains partial REST bindings to basic operations.
 
 ## Enabling SPICE console connections
@@ -50,4 +50,3 @@ The Portals enable user to connect to VM via SPICE under Firefox or Internet Exp
 
 For more details refer to the README file in each Sample Portal directory
 
-<Category:Development>

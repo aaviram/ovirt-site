@@ -10,6 +10,8 @@ wiki_last_updated: 2015-07-18
 
 # Phoenix Lab Ssh Spice Tunnel
 
+**NOTE**: for the latest version of this doc, see <http://ovirt-infra-docs.readthedocs.org/en/latest/>
+
 Heres a *hacky* way to setup the tunnel for spice to be used when clicking the engine spice button on fedora based machines.
 
 ## Requirements
@@ -73,4 +75,4 @@ That will start the SSH tunnel in the background with a SOCKS proxy listening on
 
 So after all this hacky setup, you'll be able to connect to any vm in the phx engine using the spice link in the UI. Hopefully that will not be needed i the future once we have a better solution (vpn?).
 
-<Category:Infrastructure>
+[oVirt Infrastructure](Category:Infrastructure)

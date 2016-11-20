@@ -120,8 +120,5 @@ See also [UI-Plugins](http://wiki.ovirt.org/wiki/Features/UIPlugins)
 
 ### Documentation / External references
 
-### Comments and Discussion
 
-*   Refer to <Talk:EntityHostStatus>
 
-<Category:Feature> <Category:Template> [Category:oVirt 3.6 Proposed Feature](Category:oVirt 3.6 Proposed Feature) [Category:oVirt 3.6 Feature](Category:oVirt 3.6 Feature)

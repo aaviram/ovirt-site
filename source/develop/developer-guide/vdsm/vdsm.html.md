@@ -20,7 +20,7 @@ __TOC__
 
 Vdsm stands for Virtual Desktop and Server Manager.
 
-## Important Vdsm wiki pages
+## Important Vdsm pages
 
 *   Most Vdsm users have it driven by oVirt-engine. [Vdsm Getting Started](Vdsm Getting Started) helps those who want to use Vdsm on its own, or by another management tool.
 *   [Vdsm Developers](Vdsm Developers) is where you can learn how to improve Vdsm.
@@ -42,4 +42,3 @@ Currently, Vdsm requires at least Red Hat Enterprise Linux 6.2 or Fedora 16 to r
 *   Vdsm does several non-standard stuff such as configuring your `/etc/multipathd`, starting other services, or making it a bit harder to access `libvirt` directly.
 *   Vdsm API is not yet rock solid and is expected to adjust in the near future.
 
-<Category:Project>

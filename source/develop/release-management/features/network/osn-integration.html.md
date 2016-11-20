@@ -173,8 +173,5 @@ In order to test the feature follow these steps:
 
 *   General purpose wiki: [Network_Provider](Network_Provider)
 
-### Comments and Discussion
 
-*   Refer to <Talk:Features/OSN_Integration>
 
-<Category:Feature>

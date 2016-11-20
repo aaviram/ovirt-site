@@ -1,5 +1,5 @@
 ---
-title: Integrating libosinfo with Ovirt engine
+title: Integrating libosinfo with oVirt engine
 category: feature
 authors: mlipchuk, mskrivan, roy, sandrobonazzola
 wiki_category: Feature
@@ -11,7 +11,7 @@ feature_modules: virt
 feature_status: Released
 ---
 
-# Integrating libosinfo with Ovirt engine
+# Integrating libosinfo with oVirt engine
 
 ## integrating with libosinfo - FEATURE WAS DROPPED - REPLACED by [OS info](OS info)
 
@@ -188,7 +188,7 @@ plug the memory checks to libosinfo instead the use of Config values.
 
 ### Related Features
 
-[support for PPC 64 bit](http://www.ovirt.org/Features/Engine_support_for_PPC64|Engine)
+[support for PPC 64 bit](/Features/Engine_support_for_PPC64|Engine)
 
 ### TODO
 
@@ -199,6 +199,4 @@ plug the memory checks to libosinfo instead the use of Config values.
 
 [1] exported VMs should have their os type field upgraded too. - use OVF reader logic to upgrade OsType of Windows2003x64 to win2k3 and cpuArch to x86_64
 
-### Comments and Discussion
 
-<Category:Feature> [Category:oVirt 3.4 Feature](Category:oVirt 3.4 Feature)

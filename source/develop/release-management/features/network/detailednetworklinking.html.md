@@ -19,7 +19,7 @@ The network wiring feature is an enhancement for the VM Network Interface manage
 
     * Dynamically changing the network of a running VM (without unplugging the Vnic)
     * Unwiring a network of a VM without unplugging the vnic
-[Network Linking Feature Page](http://www.ovirt.org/Feature/NetworkLinking)
+[Network Linking Feature Page](/Feature/NetworkLinking)
 
 ### Owner
 
@@ -206,10 +206,8 @@ New vdsm errors will be added:
 
 *   Enable hot changes in port mirroring (without plugging and unplugging)
 
-### Comments and Discussion
 
 ### Comment
 
 *   After the VM is connected to a new network, no one on that network is aware of the change. It was suggested, that much like in vm migration, the VM should emit a gratuitous arp packet, to notify the world about its existence. However note that in vm migration, the vm does not change its layer-2 subnet and telling the switch of its new location is all that is needed. This is NOT the case when the VM is connected to a different network, with its own vlan and ip limitations. One cannot assume that a guest server application would continue to operate uninterrupted.
 
-<Category:Template> <Category:Feature>

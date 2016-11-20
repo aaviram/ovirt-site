@@ -56,8 +56,5 @@ This is the foundation of SLA @oVirt, allowing enforcement of various aspects su
 
 *   TBD
 
-### Comments and Discussion
 
-*   Refer to <Talk:SLA-mom>
 
-<Category:Feature> <Category:SLA>

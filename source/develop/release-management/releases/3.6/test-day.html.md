@@ -1,12 +1,12 @@
 ---
-title: OVirt 3.6 Test Day
+title: oVirt 3.6 Test Day
 authors: sandrobonazzola
 wiki_title: OVirt 3.6 Test Day
 wiki_revision_count: 12
 wiki_last_updated: 2015-08-10
 ---
 
-# OVirt 3.6 Test Day
+# oVirt 3.6 Test Day
 
 ## Objective
 
@@ -29,7 +29,7 @@ Test Days are an opportunity to exercise a completed, or in-development, Feature
 
 Running into any issues? [ Try to get help from the community ](Community) on #ovirt IRC channel or file a bug:
 
-*   oVirt - <https://bugzilla.redhat.com/enter_bug.cgi?product=oVirt>
+*   oVirt - <https://bugzilla.redhat.com/enter_bug.cgi?classification=oVirt>
 *   Spice - <https://bugs.freedesktop.org/> under Spice product
 
 ## New Features - Test Status Table

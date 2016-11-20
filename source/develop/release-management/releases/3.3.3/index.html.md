@@ -1,5 +1,5 @@
 ---
-title: OVirt 3.3.3 release notes
+title: oVirt 3.3.3 release notes
 category: documentation
 authors: bproffitt, dougsland, sandrobonazzola
 wiki_category: Documentation
@@ -8,7 +8,7 @@ wiki_revision_count: 18
 wiki_last_updated: 2014-02-03
 ---
 
-# OVirt 3.3.3 release notes
+# oVirt 3.3.3 release notes
 
 The oVirt Project is pleased to announce the availability of oVirt 3.3.3 release
 
@@ -42,7 +42,7 @@ So, the first step is disable 3.3 / stable repository and enable 3.2 in /etc/yum
 
       [ovirt-32]
       name=Stable builds of the oVirt 3.2 project
-`baseurl=`[`http://ovirt.org/releases/3.2/rpm/EL/$releasever/`](http://ovirt.org/releases/3.2/rpm/EL/$releasever/)
+`baseurl=`[`http://ovirt.org/releases/3.2/rpm/EL/$releasever/`](/releases/3.2/rpm/EL/$releasever/)
       enabled=1
       skip_if_unavailable=1
       gpgcheck=0
@@ -141,4 +141,3 @@ will upgrade to latest 3.3.
 
 * Use Management class to pass informations
 
-<Category:Documentation> <Category:Releases>
